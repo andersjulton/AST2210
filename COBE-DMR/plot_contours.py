@@ -7,6 +7,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import pylab
 
 if __name__ == "__main__":
     if len(sys.argv)<2:
@@ -42,13 +43,19 @@ if __name__ == "__main__":
     my_levels = [0.1, 2.3, 6.17, 11.8]
     cs = plt.contour(qgrid,ngrid, -2.*lnL, levels=my_levels) #, colors='k'
     plt.grid()
-    #plt.legend(["0.1", "2.3", "6.17", "11.8"])
+    plt.xlabel("Q") 
+    plt.ylabel("n",rotation=0) 
+    plt.title("")
+    labels = ["Peak", "3 Sigma", "2 Sigma", "1 Sigma"]
+    for i in range(len(labels)): 
+        cs.collections[i].set_label(labels[i])
+    plt.legend(loc='upper right')
     plt.show()
 
 
     
     
-    # First, exponentiate, and subtract off the biggest
+    # exponentiate, and subtract off the biggest
     # value to avoid overflow and find P(d| Q,n)    
     P = np.exp(lnL_init-np.max(lnL_init))  
     dn = n_values[1] - n_values[0]
@@ -60,20 +67,34 @@ if __name__ == "__main__":
     # Compute marginal distribution, P(n|d)
     n_num = len(n_values)
     P_n = np.zeros(n_num)
+    P_Q = np.zeros(n_num)
     for i in range(0, n_num):
-        # Here we are integrating
-        # to get P_n, for P_Q be sure to integrate
+        # integrate to get P_n, for P_Q be sure to integrate
         # over the other dimension in P!
         P_n[i] = np.sum(P[:,i])  
+        P_Q[i] = np.sum(P[i,:])
     
     # We now normalize (note the dn - replace for P_Q!)   
     P_n = P_n / (sum(P_n) * dn)  
+    P_Q = P_Q / (sum(P_Q) * dQ)  
     
-    # We can now compute the mean    
+    # We can now compute the mean mu and  the uncertainty sigma
     mu_n = sum(P_n * n_values)*dn                    
-    print "mu_n=",mu_n
+    sigma_n = np.sqrt(sum(P_n * (n_values-mu_n)**2)*dn)                 
+    print "   mu_n =",mu_n  
+    print "sigma_n =",sigma_n,"\n"
     
-    # And lastly, we find the uncertainty   
-    sigma_n = np.sqrt(sum(P_n * (n_values-mu_n)**2)*dn) 
-    print "sigma_n=",sigma_n
+    mu_Q = sum(P_Q * Q_values)*dQ  
+    sigma_Q = np.sqrt(sum(P_Q * (Q_values-mu_Q)**2)*dQ) 
+    print "   mu_Q =",mu_Q
+    print "sigma_Q =",sigma_Q
     
+    plt.plot(n_values,P_n)
+    plt.xlabel("n") 
+    plt.ylabel("P(n)") 
+    plt.legend(["P(n)"]) 
+    plt.show() 
+    plt.plot(n_values,P_Q)   
+    plt.ylabel("P(Q)")  
+    plt.legend(["P(Q)"]) 
+    plt.show() 
