@@ -98,29 +98,7 @@ if __name__ == "__main__":
     lnL *= -0.5
     print 'Total runtime: %f seconds'%(timeit.default_timer() - runtime_start)
 
-    # First, exponentiate, and subtract off the biggest
-    # value to avoid overflow and find P(d| Q,n)
-    P = np.exp(lnL-np.max(lnL))  
-    # Normalize to unit integral
-    P = P / (np.sum(P)*dn*dQ)    
-    
-    # Compute marginal distribution, P(n|d)
-    P_n = np.zeros(n_num)
-    for i in range(0, n_num):
-        # Here we are integrating
-        # to get P_n, for P_Q be sure to integrate
-        # over the other dimension in P!
-        P_n[i] = np.sum(P[:,i])  
-    # We now normalize (note the dn - replace for P_Q!)
-    P_n = P_n / (sum(P_n) * dn)  
-    # We can now compute the mean
-    mu_n    = sum(P_n * n_values)*dn                    
-    # And lastly, we find the uncertainty
-    sigma_n = np.sqrt(sum(P_n * (n_values-mu_n)**2)*dn) 
-    
-    
-    
-    
+        
     
     # Saving full likelihood in numpy array format. This is faster and easier
     # to read in later, for visualization
