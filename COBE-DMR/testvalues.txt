@@ -1,0 +1,35 @@
+
+lmax = 5:
+
+print np.sum(N_cov) => 648282108.76
+print np.sum(rms) => 
+
+
+
+print np.sum(C_ell)  => 3.88959090444
+
+print Q,n => 1, -1
+print c_ell => [0.   0.    2.5132     0.837758     0.359039    0.179519]
+
+
+
+q = 1, n = -1
+print s_cov[0,0], np.sum(S_cov)   => 22.89104599 3133229.15187
+
+
+
+
+lnl:
+
+print np.sum(cov) => 3774226225.55
+
+print np.sum(L) (rett etter cholensky) => 1690374.31127
+
+
+
+print chisquared => 2371.2419183
+print lnL => 18053.996155
+
+lmax = 47
+print chisquared => 2370.21
+print lnL => 18053
