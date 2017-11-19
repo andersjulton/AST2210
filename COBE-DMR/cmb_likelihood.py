@@ -10,8 +10,6 @@ if __name__ == "__main__":
         sys.exit()
 
     # Reading parameters from param file into namespace.
-    # Tip: this is one possible way of using a parameter file in python, allowing you to keep all your run-specific parameters in a separate file, making it easier to keep track of what values you are using and de-cluttering your code.
-    # Disclaimer: This is not an optimal way, just _a_ way. It's unsafe in the sense that there's nothing stopping you from overwriting your parameters within the code, which is bad practice (if they're to be considered constants, at least). Feel free to improve it! 
     namespace={}
     paramfile = sys.argv[1]
     execfile(paramfile,namespace)
@@ -37,7 +35,6 @@ if __name__ == "__main__":
     pixwin = pixwin[0:lmax+1]
 
     # Finished setup of input data
-    # --------------------------------------
     print 'Finished loading data. Now pre-computing noise and foreground covariances'
     N_cov = utils.get_noise_cov(rms)
     F_cov = utils.get_foreground_cov(x,y,z)
@@ -52,7 +49,6 @@ if __name__ == "__main__":
     print 'Time spent on setup: %f seconds'%(time_a - runtime_start)
 
     # Finished precomputation
-    # ---------------------------------------
     print 'Starting likelihood evaluation loop'
 
     # Defining grid based on param file values
@@ -88,8 +84,7 @@ if __name__ == "__main__":
                 print 'Signal cov computation: %f sec'%(time_d - time_c)
                 print 'Loglikelihood computation: %f sec'%(time_e - time_d)
                 print 'In total per grid point: %f sec'%(time_e - time_b)
-                # In-loop printing of lnL, so we have something to look at
-                # even if the job isn't finished
+                # In-loop printing of lnL
                 of = open(resultfile_dat,'a')
                 of.write("%f %f %f\n"%(Q,n,-0.5*lnL[i,j]))
                 of.close()

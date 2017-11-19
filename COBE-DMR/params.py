@@ -5,7 +5,7 @@ debug_mode = True # or False. debug_mode prints lnL to .dat file in-loop, and pr
 #debug_mode = False
 nside      = 16
 lmax       = 47
-band       = 90 # or 90, in GHz
+band       = 53 # or 90, in GHz
 #band       = 90
 
 # Grid specifications
