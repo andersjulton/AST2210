@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import pylab
+from matplotlib.lines import lineStyles
 
 if __name__ == "__main__":
     if len(sys.argv)<2:
@@ -112,13 +113,15 @@ if __name__ == "__main__":
     print "   mu_Q (90 GHz) =",mu_Q2
     print "sigma_Q (90 GHz) =",sigma_Q2
         
-    plt.plot(n_values,P_n,n_values2,P_n2)
+    plt.plot(n_values,P_n,'k')
+    plt.plot(n_values2,P_n2, '0.5', linestyle='--')
     plt.xlabel("n") 
     plt.ylabel("P(n)") 
     plt.axis([-1,3, min(P_n), max(P_n)*1.1])
     plt.legend(["53 GHz", "90 GHz"]) 
     plt.show() 
-    plt.plot(Q_values,P_Q,Q_values2,P_Q2) 
+    plt.plot(Q_values,P_Q,'k')
+    plt.plot(Q_values2,P_Q2, '0.5', lineStyle='--') 
     plt.axis([0,50,min(P_Q), max(P_Q)*1.1])  
     plt.ylabel("P(Q)")  
     plt.legend(["53 GHz", "90 GHz"]) 
