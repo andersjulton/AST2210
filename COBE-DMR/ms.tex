@@ -1,0 +1,379 @@
+\documentclass{emulateapj}
+%\documentclass[12pt,preprint]{aastex}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{epsfig,floatflt}
+\usepackage{hyperref}
+\usepackage[toc, page]{appendix}
+\usepackage{verbatim, amsmath, amsfonts, amssymb, amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+
+\makeatletter
+\newcommand{\labeltarget}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
+\makeatother
+
+\begin{document}
+	
+	\title{TEMPERATURE INHOMOGENEITY SPECTRUM OF THE COSMIC MICROWAVE BACKGROUND SKY MAP: RESULTS FROM THE ANALYSIS OF THE FOUR-YEAR DATA COLLECTED BY COBE DMR} 
+
+	
+	\author{Andreas Helland}
+	
+	\email{andhel@ulrik.uio.no}
+	
+	\altaffiltext{1}{Institute of Theoretical Astrophysics, University of
+		Oslo, P.O.\ Box 1029 Blindern, N-0315 Oslo, Norway}
+	
+	
+	%\date{Received - / Accepted -}
+
+
+\begin{abstract}
+By angular power spectrum analysis and maximum likelihood estimate we have determined the best-fit cosmological parameters, amplitude and spectral index, that corresponds with the COBE DMR four-year data. We looked at the 53 and 90 GHz sky maps and the best-fit parameters obtained for the 53 GHz band was  $Q = (16.90 \pm 3.82) \text{ }\mu$K and $n = 0.64 \pm  0.37$, while the 90 band was $Q = (18.57 \pm 6.12) \text{ }\mu$K and $n = 0.96 \pm 0.61$. These values are consistent with the Harrison-Zel'dovich $n \simeq 1$ inflation model and indicate primordial density inhomogeneities predicted to be responsible for large scale structures in the universe.
+\end{abstract}
+\keywords{cosmic microwave background --- cosmology: observations --- methods: statistical}
+
+
+
+
+\section{Introduction}
+\label{sec:introduction}
+
+An important issue in current cosmology has been to determine whether the power spectrum of inhomogeneities in the cosmic microwave background radiation match the distribution predicted by inflation theory. 
+
+The cosmic microwave background (CMB) is radiation that was emitted at the time of photon decoupling. According to inflation theory, the temperature of the universe following the period of inflation was too high for neutral hydrogen to form. With an abundance of free electrons and protons, photons would not be free to traverse the universe without being scattered in the plasma. As the universe continued to expand, adiabatic cooling made the energy density of the plasma low enough for protons and electrons to form hydrogen. This period, called the epoch of recombination, happened when the temperature dropped below 3000$^\circ$ K. Because photons don't interact with electrically neutral atoms the same way, they could travel through space freely. The decoupling of matter and radiation would, according to these models, happen everywhere in the universe when the temperature became low enough. Because the difference in rate of adiabatic cooling $\Delta(dT/d\vec{r})$ across space is low, this photon decoupling happened everywhere around 380 000 years after the period of inflation. The CMB consists of photons that were able to travel freely following this event. 
+
+Since the event took place at the same time everywhere, the CMB photons that reach us in every direction have traveled as far as any other, making a spherical surface of radiation reach us that we call \textit{the surface of last scattering}. Because the universe has expanded by a factor of 1100 since then, the photon wavelength has been stretched accordingly, giving the CMB an effective temperature of 2.7K.   
+
+The CMB is essentially noise from plasma in the early universe. To be consistent with Inflation theory, photons and electrons in this plasma would be in thermodynamic equilibrium and act as a black body, meaning the CMB should follow a Planck Spectrum (as a black body in thermal equilibrium will emit electromagnetic radiation with said spectra).   
+
+Another prediction is that tiny perturbations in the primordial universe caused the formation of structures we see in the universe. These fluctuations should appear as temperature inhomogeneities in the CMB on the scale of $\Delta T / T_0 = 10-100 \text{ }\mu$K and at the very least surpassing $\Delta T / T_0 >  10^{-6}$ K,
+%$\Delta T / T_0 \simeq 10^{-4}$ to $10^{-5}$(larger than $10^{-6}$)
+where $\Delta T$  are the temperature variations and $T_0$ is the average temperature of the CMB. They correspond to density variations in the early universe, where regions of higher temperature corresponds to high density and vice versa. By looking at these inhomogeneities we get an idea of what the universe looked like in this early period.  
+
+
+
+\vspace{5mm}
+We want to find a model of the CMB signal that corresponds to the observed data. To accomplish this we model its temperature variations as a function of their sky position. To understand the statistical properties of these temperature variations we want to use the spherical harmonic decomposition. The Spherical harmonics $Y_{\ell m}$ are a set of orthogonal functions on a sphere that form a complete basis. They can be used to represent functions defined on the surface of said sphere in the same fashion as a circular (sinusoidal) function can represent functions on a circle. The spherical harmonic decomposition is the spherical equivalent of a Fourier transform,
+
+ \begin{equation}
+ \label{dTn}
+ \begin{array}{rl}
+ \Delta T(\hat{n})  &= \sum_{\ell = 0}^{\ell_{max}} \sum_{m = -\ell}^{\ell} a_{\ell m}Y_{\ell m}(\hat{n}),\\
+ \end{array}
+ \end{equation}
+
+\noindent
+Where $a_{\ell m}$ denotes the wave mode amplitudes of each wavelength and the subscripts $\ell$ and $m$ are the effective wavelength and phase of the mode respectively. 
+
+If the phase of the wave mode amplitudes don't carry any useful information, we can say that the field is statistically isotropic and homogeneous (The same in all directions and places). Essentially it tells us the field is just noise. Because this is what inflationary theory predicts, we construct our models as such. Instead, the important parameter is the amplitude (or variance) of the signal as a function of wavelength. This is called the \textit{angular power spectrum}, which is defined as
+
+ \begin{equation}
+ \label{angular_power_spec}
+ \begin{array}{rl}
+ \langle a_{\ell m}a_{\ell m}^*\rangle  &= \delta_{\ell \ell'}\delta_{mm'}C_{\ell}.\\
+ \end{array}
+ \end{equation}
+
+\noindent 
+It is this power spectrum that can tell us whether the model corresponds to observed data, %theoretical inflationary models. 
+%For more information we refer the reader to (Eriksen \& Ruud 2017).
+as different models of the universe predicts varying shapes and
+amplitudes for $C_{\ell}$.
+
+This theoretical power spectrum function $C_{\ell}$ depends on cosmological parameters. We will look at the parameters $Q$, which corresponds to the amplitude, and $n$, a spectral index, $P(k) \propto k^n$; (Bond and Efstathiou 1987) that can be described as \textit{the tilt} of the CMB spectrum. By changing these parameters, we will find different correlation structures in the CMB field.
+
+Different models of the universe and its evolution predicts different values of $Q$ and $n$. Standard inflationary models implies a power spectrum with the spectral index $n \simeq 1$ (Harrison 1970; Zel'dovich 1972). 
+
+We will analyze the Differential Microwave Radiometer (DMR) observations collected by the COBE (Cosmic Background Explorer) satellite. The goal of the DMR data was to find the aforementioned inhomogeneities in the CMB data. By comparing the measured values from COBE DMR to theoretical models, we can determine which model (e.g. which values of $Q$ and $n$) has the most correspondence to the real universe. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Method}
+\label{sec:method}
+ 
+We construct a number of models with varying parameters $Q$ and $n$ and compare their correspondence to the data collected by COBE DMR on the 53 and 90 GHz frequency bands by finding the best-fit values. In the following sections we will describe the methods used to find said values.
+
+%perform an analysis of the 53 and 90 GHz frequency data from COBE DMR to determine the best-fit values of $Q$ and $n$. In the following sections we will describe the methods used to find said values. 
+ 
+\subsection{ Data model}
+We model the CMB temperature sky maps and do a best-fit analysis with the raw CMB signal data. The first thing we do is to remove the pixels mapping areas dominated by astrophysical foreground signals, like the milky way galaxy. We then model the remaining signal data as
+ 
+\begin{equation}
+ \label{dn}
+ \begin{array}{rl}
+ d(\hat{n})  &= s(\hat{n}) + n(\hat{n}) + f(\hat{n}), \\
+ \end{array}
+\end{equation}
+ 
+ \noindent
+ where $d$ is the observed signal from direction $\hat{n}$, $s(\hat{n})$ is the actual CMB signal, $n(\hat{n})$ is noise from the instruments and $f(\hat{n})$ is possible foreground signals that are not cosmological in nature, such as the effect of a monopole and dipole. These effects must be accounted for if our theoretical model is going to match the observed signal data. 
+ %the DMR data only measures pixel to pixel differences, not the absolute values, which means any monopole we get will not be the true monopole. The dipole effect is included because the Doppler shift from our movement through space cause the CMB monopole to look like a dipole (as radiation moving in the opposite direction of the Earth is blue shifted and vice versa), distorting any actual dipole of interest.
+ 
+We assume the CMB is approximated as a Gaussian distribution. Specifically, the CMB signal data has multiple Gaussian distributed variables, which mean we have to consider the multi-variate formula, 
+ 
+ \begin{equation}
+ \label{gauss}
+ \begin{array}{rl}
+ p(\textbf{x})  &\propto \frac{1}{\sqrt{|\textbf{C}|}}e^{-\frac{1}{2}\textbf{x}^{t}\textbf{C}^{-1}\textbf{x}}. \\
+ \end{array}
+ \end{equation}
+ 
+ \noindent 
+  where \textbf{x} is a vector of all data points, and \textbf{C} is the covariance matrix, which is a matrix whose elements $e_{ij}$ is the covariance (a measure of the joint variability) between them.
+  
+    
+  If we know the covariance matrix for such a distribution, we know everything about it. As such, we want to find this matrix \textbf{C} of $d$. We assume there isn't any correlation between the values in (\ref{dn}). Therefore, all cross-products disappear and the covariance matrix of $d$ is given by \textbf{C} $\equiv \langle \textbf{dd}^T \rangle$ = \textbf{S + N + F}, where \textbf{S, N} and \textbf{F} are the covariance matrices of the signal, noise and foreground respectively.
+ 
+ We assume the noise is uncorrelated between pixels, Gaussian and has a standard deviation $\sigma_p$. The noise covariance matrix \textbf{N} is then going to be
+ 
+  \begin{equation}
+  \label{N_cov}
+  \begin{array}{rl}
+ \textbf{N}_{ij}  &= \langle n_i,n_j \rangle = \sigma^2\delta_{ij}, \\
+  \end{array}
+  \end{equation}
+
+\noindent 
+where $i$ and $j$ are pixel indices, meaning \textbf{N} is diagonal. Essentially, it's a one-dimensional Gaussian distribution for every pixel, which approximates the DMR noise very well.
+
+We also assume the CMB signal data is Gaussian and isotropic, but here the pixels are correlated. When this is the case, we get the pixel-pixel covariance matrix 
+
+
+  \begin{equation}
+  \label{s_cov}
+  \begin{array}{rl}
+  \textbf{S}_{ij}  &= \frac{1}{4\pi} \sum_{\ell = 0}^{}(2\ell + 1)(b_{\ell}p_{\ell})^2C_{\ell}P_{\ell}(\cos \theta_{ij}), \\
+  \end{array}
+  \end{equation}
+  
+ \noindent
+ where $b_{\ell}$ is the instrumental beam (meaning a function that defines the area of the sky being seen at any given time), $p_{\ell}$ is the pixel window that quantifies the effect a finite pixelization (in other words, it takes small-scale variations that can't be seen due to the size of the pixels into account), $P_{\ell}$ are the Legendre polynomials and $\theta_ij$ is the angle between pixels.
+ 
+ As mentioned above (\ref{sec:introduction}), the power spectrum $C_\ell$ depend on the parameters $Q$ and $n$. Here we consider the special class of models, parametrized by said values on the form
+ 
+  \begin{equation}
+  \label{c_ell}
+  \begin{array}{rl}
+  C_{\ell} &= \frac{4\pi}{5}Q^2 \frac{\Gamma(\ell + \frac{n-1}{2})\Gamma(\frac{9-n}{2})}{\Gamma(\ell + \frac{5-n}{2})\Gamma(\frac{3+n}{2})}.  \\ 
+  \end{array}
+  \end{equation}
+ 
+\noindent
+As we can simplify the expression for $\ell = 2$ and get $C_{\ell=2} = 4\pi/5 Q^2$, as well as the Gamma function having the recursive nature $\Gamma(1+x) = x\Gamma(x)$, we can simplify this to a computationally lighter recursive function  
+ 
+ 
+\begin{equation}
+  \label{c_ell_num}
+  \begin{array}{rl}
+  C_{\ell} &= C_{\ell - 1} (\frac{\ell+(n-1)/2}{\ell+(5-n)/2}).   \\ 
+  \end{array}
+\end{equation}
+
+
+\noindent
+We remove the monopole and dipole (ie. when $\ell = 0$ and $\ell = 1$) by defining $C_0 = C_1 = 0$ because the DMR data only measures pixel to pixel differences, not the absolute values, which means any monopole we get will not be the true monopole. The dipole effect is excluded because the Doppler shift from our movement through space cause the CMB monopole to look like a dipole (as radiation moving in the opposite direction of the Earth is blue shifted and vice versa), distorting any potential dipole of interest.
+ 
+While these have been removed from the signal covariance matrix \textbf{S}, the effects has to be accounted for if our model is going to correspond with observed data. To do this we marginalize over the amplitude of these two modes by adding a final term to the covariance matrix \textbf{F} that accounts for the two mentioned modes. %This will \textit{marginalize} over the amplitude of said modes, so that
+The final product \textbf{C} would then be independent of their true values. To accomplish this, the \textbf{F} matrix is a covariance matrix with "infinite" variance,
+
+%The final term of the covariance matrix \textbf{F} that accounts for the two modes mentioned above, will \textit{marginalize} over the amplitude of said modes, so that the final products are independent of the true values. To accomplish this, the \textbf{F} matrix is a covariance matrix with "infinite" variance,
+
+\begin{equation}
+\label{F_cov}
+\begin{array}{rl}
+\textbf{F} &= \lambda \textbf{ff}^T,   \\ 
+\end{array}
+\end{equation}
+ 
+\noindent
+where $\lambda$ is a large constant and \textbf{f} is a template on the sky designed to removes the effects we want to have away with.
+ 
+  
+After we have found these terms, the final covariance matrix $\textbf{C}(Q, n)$ is
+ 
+\begin{equation}
+\label{C_cov}
+   \begin{array}{rl}
+    \textbf{C}(Q, n) &= \textbf{S}(Q, n) + \textbf{N} + \textbf{F}.  \\ 
+ \end{array}
+\end{equation}
+
+
+
+\subsection{Maximum likelihood analysis} 
+ 
+With these values we can find the best-fit of $Q$ and $n$ given our observational data by the likelihood function defined as 
+
+\begin{equation}
+\label{likelihood}
+\begin{array}{rl}
+\mathcal{L}(Q,n) &= p(\textbf{d}|Q,n),  \\ 
+\end{array}
+\end{equation}
+
+\noindent
+which is the probability of producing dataset \textbf{d} given the parameters $Q$ and $n$. 
+%What this function does, is to determine how likely the parameters are to result in a certain dataset. 
+As we have the data, but not the true parameters, what we actually want to find are the parameters that has the highest probability of giving us the collected data.  
+
+The distribution in (\ref{likelihood}) is given by (\ref{gauss}) with the data \textbf{d} as its variable. Since we've constructed the covariance matrix (\ref{C_cov}) we can find the \textit{log-likelihood} 
+
+ 
+\begin{equation}
+\label{lnL}
+\begin{array}{rl}
+-2\log\mathcal{L}(Q,n) &= \textbf{d}^T\textbf{C}^{-1}\textbf{d} + \log|\textbf{C}| + \text{ constant,}  \\ 
+\end{array}
+\end{equation}
+
+\noindent 
+where the constant is simply a normalization factor.
+
+The resulting data are the likelihoods of each $Q$ and $n$ combination leading to the observed data. The limited size of this dataset allows us to evaluate the result with brute-force, going through the entire grid to find the maximum-likelihood parameters% (the parameters most likely to correspond with the true $Q$ and $n$ combination)
+. Standard Markov Chain Monte Carlo techniques would have been advisable had the dataset been larger.
+
+Additionally, we find the individual best-fit for both parameters by integrating one parameter over the other,
+
+\begin{equation}
+\label{lQ}
+\begin{array}{rl}
+\mathcal{L}(Q) &= \int \mathcal{L}(Q,n)dn  \\ 
+\end{array}
+\end{equation}  
+
+\noindent 
+for $Q$, as well as $\mathcal{L}(n)$ similarly.
+
+ 
+
+\section{Data}
+\label{sec:data}
+
+
+Both the 53 and 90 GHz DMR sky maps are collections of 3072 pixels representing the measured temperature perturbations. The astrophysical foreground mask mentioned earlier (\ref{sec:method}) consists of 1131 pixels, meaning the remaining data points being analyzed consist of 1941 pixels (63.2\% of the original maps) after the mask has been applied. Each pixel has an estimated 3.7$^{\circ}$ linear size (or 220’).
+
+Additionally, we have the DMR beam function $b_{\ell}$ with an angular resolution of $7^{\circ}$ and Healpix pixel window with $N_{side} = 16$. Our data span the multipole range $\ell \in [2,47]$ where the monopole and dipole are excluded for the reasons mentioned earlier (\ref{sec:method}).  
+
+The range of parameters being modeled are $Q \in [1,50]$ and $n \in [-1,3]$ both with 40 data points.
+
+
+
+
+
+\section{Results}
+\label{sec:results}
+
+\begin{figure}[t]
+	
+	\mbox{\epsfig{figure=img/combined_contour.png,width=\linewidth,clip=}}
+	
+	\caption{Contour plot of both frequency sky maps for parameters $Q$ and $n$ with the likelihood function maxima, 68\%, 95\% and 99.7\% confidence levels for $p(\textbf{d}|Q,n)$. }
+	\label{fig:contour}
+\end{figure}
+
+\begin{figure}[t]	
+	\mbox{\epsfig{figure=img/combined_pQ_v2.png,width=\linewidth,clip=}}	
+	\caption{Marginal distribution $P(Q)$ for both sky maps.}
+	\label{fig:PQ}
+\end{figure}
+
+\begin{figure}[t]	
+	\mbox{\epsfig{figure=img/combined_pn_v2.png,width=\linewidth,clip=}}	
+	\caption{Marginal distribution $P(Q)$ for both sky maps.}
+	\label{fig:Pn}
+\end{figure}
+
+
+\begin{deluxetable}{lccc}
+	%\tablewidth{0pt}
+	\tablecaption{\label{tab:results}}
+	\tablecomments{Derived best-fit values (mean) for both sky maps with standard deviation.}
+	\tablecolumns{4}
+	\tablehead{Frequency  & $Q\text{ } (\mu$K)  & $n$}
+	\startdata
+	53 GHz &$16.90 \pm 3.82$ & $0.64 \pm  0.37$ \\
+	90 GHz & $ 18.57 \pm 6.12$ & $0.96 \pm 0.61$  \\
+		\enddata
+\end{deluxetable}
+
+A contour plot of the likelihood function $p(\textbf{d}|Q,n)$ for different value of $Q$ and $n$ can be found in Figure (\ref{fig:contour}).
+
+The probability distribution $P(Q)$ can be found in Figure (\ref{fig:PQ}) and the distribution $P(n)$ in Figure (\ref{fig:Pn}).
+
+The best-fit values for $Q$ and $n$ are shown in Table (\ref{tab:results}).
+ 
+The analysis runtime on a regular laptop computer was 686 seconds in total where 40.6\% of the time was spent calculating signal covariance matrices $S(Q,n)$, while 59.6\% of the time was spent calculating the log-likelihood. 
+ 
+%Show the 2D likelihood contours. Summarize constraints on $Q$ and $n$. 
+
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+Through power spectrum and maximum-likelihood analysis we have found the cosmological parameters $Q$ and $n$ in highest correspondence with the CMB spectrum data collected by COBE DMR on the 90 and 53 GHz Frequency. 
+
+$Q$ can be said to represent the \textit{amplitude} of the power spectrum and $n$ its \textit{tilt}, by which we mean the strength of the temperature variations, and how large structures vary compared with smaller structures respectively.
+
+The results are consistent with the $n \simeq 1$ Harrison-Zel'dovich model (Harrison 1970; Zel'dovich 1972) that many standard inflationary models inhere to, which is within the obtained uncertainty that can be found in Table (\ref*{tab:results}). As mentioned, the spectral index $n$ corresponds to how the temperature fluctuations vary with scale. $n = 1$ would indicate scale invariance. 
+
+Inflation theory tells us %the primordial density fluctuations derive from early quantum fluctuations.
+$n$ depends on the motion of inflatons, (the quanta of the inflaton field, which is responsible for the initial rapid expansion of the universe) as the effect of quantum fluctuations became super-horizon sized in the expansion. "Different inflationary potentials predicts different spectral indexes" (Wales, J. \& Sanger, L., \ref{prim_fluc}). A higher $n$ would describe a primordial universe with stronger fluctuations on smaller scales and vice versa. However, most standard models predict scale invariance as our analysis predicts.
+%We also see that the uncertainty increases on higher bands as expected due to more interference from astrophysical foreground when the frequency increases.
+
+
+We also found the maximum likelihood estimation of $Q$ to be different from zero with a ~4.4 sigma significance (\ref{fig:PQ}), which indicates there are in fact temperature fluctuations $\Delta T / T_0$ in the CMB. By extension, this indicates density perturbations in the primordial plasma. As this density variance is responsible for the formation of large scale structures in the universe, finding $Q \neq 0$ was necessary to explain the presence of stars and galaxies. We found a non-zero $Q$ to match the observed sky map data, as seen in Table (\ref{tab:results}). In other words, the seeds of all large scale structures that later formed as the universe evolve have essentially been detected.  
+
+
+In summary, this analysis has shown the four-year COBE DMR data to correspond with models of primordial fluctuations. The results are consistent with Harrison-Zel'dovich's $n \simeq 1$ and $Q \simeq 20 \text{ }\mu$K. However, due to uncertainties from imprecise measurements, further experiments with more sensitive equipment is advised. There were aspects of the DMR sky maps that were either not measured or removed from the dataset. New experiments that can cover these aspects, such as other frequencies or the CMB data outshone by astrophysical foreground, are also advised to pursue. This would not only strengthen the results we have found here, but could potentially lead to further insight into dark matter, dark energy, large scale structures, inflation and more.
+
+
+
+
+\begin{acknowledgements}
+  We gratefully acknowledge the contributions made by Hans Petter Harveg, Markus Bjørklund, Aram Salihi and Daniel Heinesen who worked in colloquia to help understand and optimize the work done in this \textit{Letter}. Hans Kristian Eriksen and Ainar Drews should also be mentioned here for their guidance of and patience with the aforementioned and author\textit{s} of this \textit{Letter}.
+\end{acknowledgements}
+
+
+\begin{thebibliography}{}
+
+\bibitem[G{\'o}rski et al.(1994)]{gorski:1994} G{\'o}rski, K. M.,
+  Hinshaw, G., Banday, A. J., Bennett, C. L., Wright, E. L., Kogut,
+  A., Smoot, G. F., and Lubin, P.\ 1994, ApJL, 430, 89
+
+\bibitem[Eriksen, H. K. \& Ruud, T. M.  (2017)]{Eriksen-Ruud:1994}Eriksen, H. K. \& Ruud, T. M. 2017, "Analysis of four-year COBE-DMR data", \url{http://folk.uio.no/hke/AST2210/cobe_project/project_AST2210_cobe.pdf}
+
+\bibitem[Bond, J. R., Efstathiou, G. (1984)]{Bond:1984} Bond, J. R., Efstathiou, G. 1984,  "The statistics of cosmic background radiation ﬂuctuations"
+
+\bibitem[Zeldovich, Y. (1972)]{Zel:1972}Zeldovich, Y. 1972, "A hypothesis, unifying the structure and
+the entropy of the universe", \textit{Monthly notices of the Royal Astronomical Society}, 160, 1P-3P, 
+
+\bibitem[E. R. Harrison (1970)]{Zel:1972}E. R. Harrison 1970,  "Fluctuations at the threshold of classical
+cosmology," Phys. Rev. D1 1970, 2726.
+
+\bibitem[Wikipedia]{wiki}Wales, J. \& Sanger, L., Primordial fluctuations \url{https://en.wikipedia.org/wiki/Primordial_fluctuations}\label{prim_fluc} %Wales, J. \& Sanger, L. (2001)
+\end{thebibliography}
+
+
+\end{document}
